@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Réseaux de transport</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.min.css" integrity="sha512-1PKOgIY59xJ8Co8+NE6FZ+LOAZKjy+KY8iq0G4B3CyeY6wYHN3yt9PW0XpSriVlkMXe40PTKnXrLnZ9+fkDaog==" crossorigin="anonymous" />
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI=" crossorigin="" />
+<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js" integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM=" crossorigin=""></script>
+
+        <style>
+
+            body {  
+            background-color: #7CC779;
+            margin-top: 100px;
+            }
+
+            .left-column {
+            width: 30%;
+            float: left;
+            }
+
+            .right-column {
+            width: 70%;
+            float: right;
+            }
+
+            .left-column .circles {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            margin-bottom: 20px;
+            }
+
+            .left-column .circle {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            }
+
+            .left-column .circle i {
+            font-size: 20px;
+            }
+            #map {
+                height: 450px;
+                border: solid 1px black;
+              }
+            
+            #bouton {
+                margin-top : 30px;
+                text-align: center;
+            }
+
+            .square {
+                width: 50px;
+                height: 50px;
+                background-color: #333;
+                color: #fff;
+                text-align: center;
+                line-height: 50px;
+                margin : 5px
+              }
+
+              h1{
+                border-left : 1px solid white;
+                padding: 10px;
+              }
+
+              .footer{
+                margin-top : 50px;
+                text-align : center;
+              }
+              
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="left-column">
+                    <div class="d-flex justify-content-around">
+                        <img src="img-removebg-preview.png" alt="Logo" height="100px" width="100px">
+                        <h1>Bus & Tram</h1>    
+                        </div>
+                        <div class="circles">
+                            <div class="circle"><a href="index.html"></a><i class="fa fa-bus"></i></a></div>
+                            <div class="circle"><a href="velo.html"><i class="fa fa-bicycle"></i></a></div>
+                            <div class="circle"><a href="#"><i class="fa fa-car"></i></a></div>
+                            <div class="circle"><a href="#"><i class="fa fa-store"></i></a></div>
+                        </div>
+                        <div style = "background-color: white; text-align: center;";>
+                            <div id="bouton" class="btn-group btn-group-toggle " data-toggle="buttons" >
+                                <label class="btn-lg btn-primary active btn-success">Lignes</label>
+                                <label class="btn-lg btn-primary btn-success">Arrêts</label>
+                            </div>
+                            <div class="container">
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : red">1</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : green">2</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : blue">3</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : purple">4</div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : orange">5</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : yellow">6</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : brown">7</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : grey">8</div>
+                                  </div>
+                                </div>
+                                <div class="row">
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : black">9</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : pink">10</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square" style="background-color : white; color : black">11</div>
+                                  </div>
+                                  <div class="col-sm-3">
+                                    <div class="square">12</div>
+                                  </div>
+                                </div>
+                              </div>
+                              
+                        </div>
+                    </div>
+                <div class="right-column">
+                    <div id="map" ></div>
+                </div>
+            </div>
+        </div>
+        <div class = "footer">
+            Mentions Légales | Politique de confidentialité | 2022 Carte-Réseau
+        </div>
+    </body>
+    <script>
+
+        // Référence l'élément <div> où la carte sera affichée
+        const mapElement = document.getElementById('map');
+
+        // Crée une nouvelle instance de carte
+        const map = L.map(mapElement).setView([48.85, 2.35], 12);
+
+        // Ajoute une couche de fond de carte OpenStreetMap à la carte
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{
+            attribution: '© <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+            }).addTo(map);
+
+    </script>
+</html>
+
+
